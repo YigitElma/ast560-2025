@@ -26,10 +26,10 @@ calc_flux_central_2o(double vel, double fll, double fl, double fr, double frr)
 static inline double
 calc_flux_upwind_3o(double vel, double fll, double fl, double fr, double frr)
 {
-  // HOMEWORK: You need to implement this function!
-  fprintf(stderr, "**** HOMEWORK!!!\n"); // delete this line
-  assert(false); // delete this line
-  return 0.0;
+  if (vel > 0)
+    return vel * (-fll + 6.0 * fl + 3.0 * fr) / 8.0;
+  else
+    return vel * (-frr + 6.0 * fr + 3.0 * fl) / 8.0;
 }
 
 // Different stencils for second-order derivatives: the cell-spacing
@@ -46,9 +46,7 @@ calc_diff2_central_2o(double dx, double fll, double fl, double f0, double fr, do
 static inline double
 calc_diff2_central_4o(double dx, double fll, double fl, double f0, double fr, double frr)
 {
-  // HOMEWORK: You need to implement this function!
-  assert(false); // delete this line
-  return 0.0;
+  return (-fll + 16.0 * fl - 30.0 * f0 + 16.0 * fr - frr) / (12.0 * dx * dx);
 }
 
 // function pointer types for computing advective interface flux
